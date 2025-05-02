@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - E-Design Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary: #9B8579;
+            --secondary: #E5DCD6;
+            --text: #4A4A4A;
+        }
+
+        body {
+            background-color: var(--secondary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 245, 245, 0.8) 100%);
+        }
+
+        .signup-wrapper {
+            display: flex;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .signup-image {
+            flex: 1;
+            background-size : cover;
+            background-position: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            width: 40%;
+        }
+
+        .signup-container {
+            flex: 1;
+            background-color: white;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .signup-header h1 {
+            font-size: 36px;
+            color: var(--primary);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .signup-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .name-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .name-row>* {
+            flex: 1;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(155, 133, 121, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--primary);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #8A7569;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .signup-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .signup-footer a:hover {
+            color: #8A7569;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .signup-wrapper {
+                flex-direction: column;
+            }
+
+            .signup-image {
+                min-height: 200px;
+            }
+
+            .name-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <body>
+        <div class="signup-wrapper">
+            <div class="signup-image">
+                <img src="./image.png" alt="">
+            </div>
+            <div class="signup-container">
+                <div class="signup-header">
+                    <h1>Create Account</h1>
+                    <p>Start your E-Design journey</p>
+                </div>
+                <form class="signup-form" id="signup-form">
+                    <div class="name-row">
+                        <div class="form-group">
+                            <input type="text" id="first-name" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="last-name" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <div class="signup-footer">
+                    Already have an account? <a href="login.html">Log in</a>
+                </div>
+            </div>
+        </div>
+    
+        <script>
+            document.getElementById('signup-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+        
+                // Get the input values
+                var firstName = document.getElementById('first-name').value;
+                var lastName = document.getElementById('last-name').value;
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+                var confirmPassword = document.getElementById('confirm-password').value;
+        
+                // Basic validation for password match
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match!");
+                    return;
+                }
+        
+                // Check if user already exists by email in localStorage
+                var users = JSON.parse(localStorage.getItem('users')) || []; // If no users, initialize an empty array
+                var existingUser = users.find(user => user.email === email); // Check if user with the same email exists
+        
+                if (existingUser) {
+                    alert("Account already exists with this email.");
+                    return;
+                }
+        
+                // Create new user object
+                var newUser = { firstName, lastName, email, password };
+        
+                // Add the new user to the list of users
+                users.push(newUser);
+        
+                // Save users array back to localStorage
+                localStorage.setItem('users', JSON.stringify(users));
+        
+                // Alert and redirect to login page
+                alert("Account created successfully! Please log in.");
+                window.location.href = "login.html"; // Redirect to login after successful signup
+            });
+        </script>
+        
+</body>
+
+</html>
