@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edesign | Image Editor</title>
+    <link href="imageEditor.css" rel="stylesheet">
+    <link href="imageEditor.js" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></head>
+    <body>
+       <nav class="navbar">
+            <a href="#" class="navbar-logo">
+                <img src="edesign.png" alt="Edesign Logo">
+    
+            </a>
+            <div class="navbar-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    
+        <div class="container">
+            <section class="main-section">
+                <div class="heading-container">
+                    <h1 class="heading">Image Editor</h1>
+                    <p class="tagline">Customize and transform your space</p>
+                </div>
+    
+                <div class="room-container" id="room-container">
+                    <img id="mainRoomImage" src="livingroom-05.jpg" alt="Room" class="room-image">
+                    <img id="uploadedImage" class="uploaded-image" style="display: none;">
+                    
+                    <div class="editing-section">
+                        <button class="edit-button" id="editButton">Edit Room</button>
+                        <button class="upload-button" id="file-explorer-button">Upload Artwork</button>
+                    </div>
+                </div>
+    
+                <div class="room-grid">
+                    <a href="#" onclick="changeRoomImage('https://i.ibb.co/3T5BzyL/kidsroom-01.jpg', event)">
+                        <img src="kidsroom-01.jpg" alt="Room 2" class="room-image">
+                    </a>
+                    <a href="#" onclick="changeRoomImage('https://i.ibb.co/1TQyz1J/livingroom-04.jpg', event)">
+                        <img src="livingroom-04.jpg" alt="Room 3" class="room-image">
+                    </a>
+                    <a href="#" onclick="changeRoomImage('https://i.ibb.co/wwQ5Hz2/livingroom-01.jpg', event)">
+                        <img src="livingroom-01.jpg" class="room-image">
+                    </a>
+                    <a href="#" onclick="changeRoomImage('https://i.ibb.co/WGPRGmn/worldofwonders-01.jpg', event)">
+                        <img src="worldofwonders-01.jpg" alt="World of Wonders" class="room-image">
+                    </a>
+                </div>
+            </section>
+    
+            <div class="toolbox" id="toolbox" style="display: none;">
+                <h3 class="toolbox-heading">Editing Tools</h3>
+    
+                <div class="toolbox-item">
+                    <label for="sizeSlider">Size</label>
+                    <input type="range" id="sizeSlider" class="tool-slider" min="50" max="200" value="100">
+                    <span id="sizeValue">100%</span>
+                </div>
+    
+                <div class="toolbox-item">
+                    <label for="lightingSlider">Lighting</label>
+                    <input type="range" id="lightingSlider" class="tool-slider" min="0" max="100" value="50">
+                    <span id="lightingValue">50%</span>
+                </div>
+    
+                <div class="toolbox-item">
+                    <button class="tool-button" id="rotateButton"><i class="fas fa-sync-alt"></i> Rotate</button>
+                </div>
+    
+                <div class="toolbox-item">
+                    <button class="tool-button" id="resetButton"><i class="fas fa-undo"></i> Reset</button>
+                </div>
+    
+                <div class="toolbox-item">
+                    <button class="tool-button" id="saveButton"><i class="fas fa-save"></i> Save</button>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>

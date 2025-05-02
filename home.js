@@ -46,5 +46,4 @@ function logoutUser() {
     localStorage.removeItem('userName');
     // Reload the page to reflect the changes
     location.reload();
-}
-//Javascript 
+} 
