@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary: #9B8579;
+            --secondary: #E5DCD6;
+            --text: #4A4A4A;
+            --light-bg: #F8F5F3;
+        }
+
+        body {
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 40px 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .search-bar::after {
+            content: "🔍";
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Common Styles */
+        h1 {
+            font-size: 64px;
+            color: var(--primary);
+            font-weight: 300;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: var(--text);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Services Page */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .service-card {
+            background: var(--light-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        /* About Page */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin: 50px 0;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Page */
+        .contact-form {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: var(--primary);
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--light-bg);
+            padding: 50px 0;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .about-hero {
+            background-color: var(--light-bg);
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .mission-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .mission-card {
+            text-align: center;
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: 15px;
+        }
+
+        .mission-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .team-section {
+            margin: 60px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            border-left: 2px solid var(--primary);
+            position: relative;
+            margin-bottom: 30px;
+            margin-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            left: -11px;
+            top: 25px;
+        }
+
+        .awards-section {
+            background: var(--light-bg);
+            padding: 60px 0;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .award-item {
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .mission-section,
+            .team-grid,
+            .awards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <
+    <div class="container">
+        <nav>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="nav-links">
+                <a href="index.html">home</a>
+                <a href="./services.html">services</a>
+                <a href="./about.html">about</a>
+                <a href="./contact.html">contact</a>
+            </div>
+        </nav>
+    <div class="about-hero">
+        <div class="container">
+            <h1>About Our Studio</h1>
+            <p>Bringing professional interior design to everyone, everywhere</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Story Section -->
+        <div class="about-section">
+            <div class="about-content">
+                <h2>Our Story</h2>
+                <p>Founded in 2020, E-Design Studio was born from a simple idea: everyone deserves access to professional interior design, regardless of their location or budget. What started as a small virtual design consultancy has grown into a full-service e-design studio serving clients worldwide.</p>
+                <p>Our team of experienced designers combines their expertise in interior design with cutting-edge technology to deliver exceptional virtual design services that transform spaces and enhance lives.</p>
+            </div>
+            <div class="about-image">
+                <img src="our.jpg" alt="Our Studio">
+            </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="mission-section">
+            <div class="mission-card">
+                <div class="mission-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p>To democratize interior design by making professional design services accessible, affordable, and convenient for everyone.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">👁️</div>
+                <h3>Our Vision</h3>
+                <p>To become the world's leading virtual interior design platform, helping people create spaces they love.</p>
+            </div>
+            <div class="mission-card">
+                <div class="mission-icon">💎</div>
+                <h3>Our Values</h3>
+                <p>Innovation, accessibility, sustainability, and excellence in every design we create.</p>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <!-- <div class="team-section">
+            <h2>Meet Our Team</h2>
+            <p>Our talented designers bring years of experience and passion to every project.</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>Sarah Johnson</h3>
+                    <p>Founder & Lead Designer</p>
+                    <p>15+ years in interior design</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>Michael Chen</h3>
+                    <p>Senior Designer</p>
+                    <p>Specializes in modern minimalism</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="/api/placeholder/200/200" alt="Team Member">
+                    </div>
+                    <h3>Emma Rodriguez</h3>
+                    <p>Design Consultant</p>
+                    <p>Expert in sustainable design</p>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Timeline -->
+        <h2>Our Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2020</h3>
+                <p>Founded E-Design Studio with virtual consultations</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2021</h3>
+                <p>Launched full-service e-design packages</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2022</h3>
+                <p>Expanded team and introduced 3D visualization services</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2023</h3>
+                <p>Reached 1000+ completed projects milestone</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2024</h3>
+                <p>Launched sustainable design initiative</p>
+            </div>
+        </div>
+
+        <!-- Awards Section -->
+        <div class="awards-section">
+            <div class="container">
+                <h2>Recognition & Awards</h2>
+                <div class="awards-grid">
+                    <div class="award-item">
+                        <h3>🏆</h3>
+                        <p>Best E-Design Service 2023</p>
+                    </div>
+                    <div class="award-item">
+                        <h3>🌟</h3>
+                        <p>Innovation in Design Award</p>
+                    </div>
+                    <div class="award-item">
+                        <h3>📱</h3>
+                        <p>Best Digital Design Platform</p>
+                    </div>
+                    <div class="award-item">
+                        <h3>🌿</h3>
+                        <p>Sustainable Design Excellence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin: 60px 0;">
+            <h2>Ready to Start Your Design Journey?</h2>
+            <p>Let's create beautiful spaces together</p>
+            <button class="btn btn-primary">Get Started</button>
+        </div>
+    </div>
+
+</body>
+</html>
